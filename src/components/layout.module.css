@@ -1,0 +1,11 @@
+.footer {
+	background: linear-gradient(#b53232, red);
+}
+
+.header {
+	background: linear-gradient(#b53232, red);
+}
+
+.header img {
+	max-height: 10em;
+}
