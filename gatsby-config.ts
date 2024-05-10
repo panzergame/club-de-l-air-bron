@@ -14,7 +14,28 @@ const config: GatsbyConfig = {
     "gatsby-plugin-emotion",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp"
+    "gatsby-transformer-remark",
+    "gatsby-transformer-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: `articles`,
+        path: `${__dirname}/resources/articles`,
+      }
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 500,
+            },
+          },
+        ],
+      },
+    },
    ]
 };
 

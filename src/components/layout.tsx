@@ -7,10 +7,9 @@ import { header, footer } from './layout.module.css'
 import { SocialIcon } from 'react-social-icons'
 
 type LayoutProps = {
-	pageTitle: string
 }
 
-const Layout: React.FC = (props: PropsWithChildren<FooProps>) => {
+const Layout: React.FC = (props: PropsWithChildren<LayoutProps>) => {
 	const data = useStaticQuery(graphql`
     query {
       site {
@@ -26,7 +25,7 @@ const Layout: React.FC = (props: PropsWithChildren<FooProps>) => {
 		<Container fluid className="d-flex flex-column min-vh-100">
 			<Row className={`d-flex ${header}`}>
 				<Col xs={3} className="d-flex h-100 px-0 my-auto justify-content-center">
-					<StaticImage src="../images/logo-club.png" alt="Club logo" objectFit="contain" placeholder="none"/>
+					<StaticImage src="../../resources/images/logo-club.png" alt="Club logo" objectFit="contain" placeholder="none"/>
 				</Col>
 				<Col xs={9} className="d-flex flex-column my-auto">
 					<h1>{data.site.siteMetadata.title}</h1>
