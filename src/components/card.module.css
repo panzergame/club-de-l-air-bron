@@ -1,0 +1,11 @@
+.card_footer {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    color: white;
+    background-color: #4882ffbf;
+}
+
+.card_footer a {
+    color: white;
+}

@@ -2,9 +2,8 @@ import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import { graphql, useStaticQuery, Link } from 'gatsby'
 import Layout from "../components/layout"
-import CategoryCard from "../components/category_card"
-import {Card, CardGroup, Container, Row, Col} from "react-bootstrap"
-import holderjs from "holderjs"
+import DomainCard from "../components/domain_card"
+import {Row, Col} from "react-bootstrap"
 
 const Page: React.FC<PageProps> = ({ pageContext }) => {
     const domaines = pageContext;
@@ -15,7 +14,7 @@ const Page: React.FC<PageProps> = ({ pageContext }) => {
         {
             Object.values(domaines).map((domaine) => (
               <Col key={domaine.tag}>
-                <CategoryCard domaine={domaine}/>
+                <DomainCard domaine={domaine}/>
               </Col>
             ))
         }

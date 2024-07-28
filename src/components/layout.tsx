@@ -34,7 +34,7 @@ const Layout: React.FC = (props: PropsWithChildren<LayoutProps>) => {
 			</Row>
 			<Container className="flex-grow-1 bg-light">
 				<Navbar/>
-				<div>{ props.children }</div>
+				<div className="my-3">{ props.children }</div>
 			</Container>
 			<Row className={`page-footer d-flex p-3 ${footer}`}>
 				<SocialIcon url="https://www.facebook.com/p/Club-de-lair-Lyon-Bron-100064557737513/?locale=fr_FR" />

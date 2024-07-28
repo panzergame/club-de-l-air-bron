@@ -38,12 +38,6 @@ export const createPages = async ({ actions, graphql }) => {
           });    
     });
 
-    const echelles = [
-        {title: '1/72', 'tag': '1_72'},
-        {title: '1/48', 'tag': '1_72'},
-        {title: '1/35', 'tag': '1_72'},
-        {title: '1/32', 'tag': '1_72'}
-    ]
     const domainesMeta = [
         {title: 'Avions', tag: 'avion'},
         {title: 'Blindé', tag: 'blinde'},
@@ -51,7 +45,7 @@ export const createPages = async ({ actions, graphql }) => {
     ]
     const domaines = await Promise.all(domainesMeta.map(async domaine =>
         { 
-            let imageData = await graphql(`
+            const imageData = await graphql(`
                     query {
                         file(relativePath: { eq: "categories/${domaine.tag}.png" } ) {
                             childImageSharp {
@@ -65,6 +59,17 @@ export const createPages = async ({ actions, graphql }) => {
                         }
                     }`
                 )
+
+            const echellesData = await graphql(`
+                query {
+                    allMdx (filter: {
+                        frontmatter: { domaine: { eq: "${domaine.tag}" }}
+                    })
+                    {
+                        distinct(field: { frontmatter: { echelle: SELECT } })
+                    }
+              }`);
+            const echelles = echellesData.data.allMdx.distinct.map(data => ({ title: data, tag: data.replace('/', '_') })) 
             
             return { title: domaine.title, tag: domaine.tag, echelles: echelles, image: imageData.data.file}
         }
@@ -75,5 +80,48 @@ export const createPages = async ({ actions, graphql }) => {
         component: resolve(__dirname, 'src/templates/galeries.tsx'),
         context: domaines
       }); 
+
+
+    for (const domaine of domaines) {
+        for (const echelle of domaine.echelles) {
+            const articlesData = await graphql(`
+            query {
+                allMdx (filter: {
+                    frontmatter: {
+                        echelle: { eq: "${echelle.title}" },
+                        domaine: { eq: "${domaine.tag}" }
+                    }
+                })
+                {
+                    nodes {
+                        frontmatter {
+                            title
+                            couverture {
+                                childImageSharp {
+                                    gatsbyImageData(
+                                        transformOptions: {
+                                            fit: INSIDE
+                                        },
+                                        placeholder: NONE
+                                    )
+                                }
+                            }
+                        }
+                        id
+                    }
+                }
+            }`)
+
+            const articles = articlesData.data.allMdx.nodes.map(data => {
+                 return { title: data.frontmatter.title, id: data.id, image: data.frontmatter.couverture?.childImageSharp?.gatsbyImageData }
+            })
+
+            createPage({
+                path: `/categorie/${domaine.tag}/${echelle.tag}`,
+                component: resolve(__dirname, 'src/templates/categorie.tsx'),
+                context: {domaine: domaine, echelle: echelle, articles: articles}
+              }); 
+        }
+    }
 }
 
