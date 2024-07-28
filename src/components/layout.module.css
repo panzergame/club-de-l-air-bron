@@ -1,9 +1,11 @@
 .footer {
-	background: linear-gradient(#b53232, red);
+	background: linear-gradient(#4882ff, #2a29ff);
+	color: white;
 }
 
 .header {
-	background: linear-gradient(#b53232, red);
+	background: linear-gradient(#4882ff, #2a29ff);
+	color: white;
 }
 
 .header img {

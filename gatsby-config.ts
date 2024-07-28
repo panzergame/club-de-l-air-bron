@@ -24,6 +24,13 @@ const config: GatsbyConfig = {
       }
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: `images`,
+        path: `${__dirname}/resources/images`,
+      }
+    },
+    {
       resolve: `gatsby-plugin-mdx`,
       options: {
         gatsbyRemarkPlugins: [

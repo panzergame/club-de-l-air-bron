@@ -24,15 +24,15 @@ const Layout: React.FC = (props: PropsWithChildren<LayoutProps>) => {
   return (
 		<Container fluid className="d-flex flex-column min-vh-100">
 			<Row className={`d-flex ${header}`}>
-				<Col xs={3} className="d-flex h-100 px-0 my-auto justify-content-center">
-					<StaticImage src="../../resources/images/logo-club.png" alt="Club logo" objectFit="contain" placeholder="none"/>
+				<Col xs={3} className="d-flex h-100 px-0 my-auto justify-content-center" md={{ span: 2, offset: 2}}>
+					<StaticImage src="../../resources/images/logo-club-clair.png" alt="Club logo" objectFit="contain" placeholder="none"/>
 				</Col>
-				<Col xs={9} className="d-flex flex-column my-auto">
+				<Col xs={9} className="d-flex flex-column my-auto" md={7}>
 					<h1>{data.site.siteMetadata.title}</h1>
 					<h6>{data.site.siteMetadata.description}</h6>
 				</Col>
 			</Row>
-			<Container fluid="lg" className="bg-light mb-auto">
+			<Container className="flex-grow-1 bg-light">
 				<Navbar/>
 				<div>{ props.children }</div>
 			</Container>

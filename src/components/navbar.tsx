@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
         <Nav.Link as={Link} to="/le_club">Le club</Nav.Link>
       </Nav.Item>
       <Nav.Item as="li">
-        <Nav.Link as={Link} to="/galleries">Galeries</Nav.Link>
+        <Nav.Link as={Link} to="/galeries">Galeries</Nav.Link>
       </Nav.Item>
       <NavDropdown title="Categories">
         <NavDropdown.Item as={Link} to="/expo_concours">Expo concours</NavDropdown.Item> 
