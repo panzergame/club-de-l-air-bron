@@ -5,7 +5,6 @@ import CategoryCard from "../components/category_card"
 import {Row, Col} from "react-bootstrap"
 
 const Page: React.FC<PageProps> = ({ pageContext }) => {
-  console.log(pageContext.articles)
   return (
     <Layout>
 	    <h2>{pageContext.domaine.title} { pageContext.echelle.title }</h2>

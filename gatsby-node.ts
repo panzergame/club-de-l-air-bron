@@ -8,20 +8,38 @@ export const onCreateDevServer = ({ app }) => {
 export const createPages = async ({ actions, graphql }) => {
     const { createPage } = actions;
 
-    const allMdx: {
+    const allStrapiArticle: {
         errors?: any;
         data?: { allMdx: { nodes: [] } };
       } = await graphql(`
     query {
-        allMdx {
+        allStrapiArticle {
             nodes {
-                frontmatter {
-                    title
-                    date(formatString: "MMMM DD, YYYY",  locale:"fr")
-                }
+                titre
+                date(formatString: "DD MMMM, YYYY",  locale:"fr")
                 id
-                internal {
-                    contentFilePath
+                content {
+                    data {
+                        childMarkdownRemark {
+                            rawMarkdownBody
+                        }
+                    }
+                    medias {
+                        src
+                        localFile {
+                            childImageSharp {
+                                gatsbyImageData(
+                                    layout: FULL_WIDTH,
+                                    transformOptions: {
+                                        fit: INSIDE
+                                    },
+                                    placeholder: NONE
+                                )
+                            }
+                        }
+                        url
+                        alternativeText
+                    }
                 }
             }
         }
@@ -30,10 +48,10 @@ export const createPages = async ({ actions, graphql }) => {
 
     const postTemplate = resolve(__dirname, 'src/templates/article.tsx');
 
-    allMdx.data?.allMdx.nodes.forEach(node => {
+    allStrapiArticle.data?.allStrapiArticle.nodes.forEach(node => {
         createPage({
             path: '/article/' + node.id,
-            component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
+            component: postTemplate, //`${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
             context: node
           });    
     });
@@ -62,14 +80,14 @@ export const createPages = async ({ actions, graphql }) => {
 
             const echellesData = await graphql(`
                 query {
-                    allMdx (filter: {
-                        frontmatter: { domaine: { eq: "${domaine.tag}" }}
+                    allStrapiArticle(filter: {
+                        domaine: { eq: "${domaine.tag}" }
                     })
                     {
-                        distinct(field: { frontmatter: { echelle: SELECT } })
+                        distinct(field: { echelle: SELECT } )
                     }
               }`);
-            const echelles = echellesData.data.allMdx.distinct.map(data => ({ title: data, tag: data.replace('/', '_') })) 
+            const echelles = echellesData.data.allStrapiArticle.distinct.map(data => ({ title: data, tag: data.replace('/', '_') })) 
             
             return { title: domaine.title, tag: domaine.tag, echelles: echelles, image: imageData.data.file}
         }
@@ -85,42 +103,42 @@ export const createPages = async ({ actions, graphql }) => {
     for (const domaine of domaines) {
         for (const echelle of domaine.echelles) {
             const articlesData = await graphql(`
-            query {
-                allMdx (filter: {
-                    frontmatter: {
+                query {
+                    allStrapiArticle(filter: {
                         echelle: { eq: "${echelle.title}" },
                         domaine: { eq: "${domaine.tag}" }
-                    }
-                })
-                {
-                    nodes {
-                        frontmatter {
-                            title
+                    })
+                    {
+                        nodes {
+                            id
+                            echelle
+                            domaine
+                            titre
                             couverture {
-                                childImageSharp {
-                                    gatsbyImageData(
-                                        transformOptions: {
-                                            fit: INSIDE
-                                        },
-                                        placeholder: NONE
-                                    )
+                                localFile {
+                                    childImageSharp {
+                                        gatsbyImageData(
+                                            transformOptions: {
+                                                fit: INSIDE
+                                            },
+                                            placeholder: NONE
+                                        )
+                                    }
                                 }
                             }
                         }
-                        id
                     }
-                }
-            }`)
+                }`)
 
-            const articles = articlesData.data.allMdx.nodes.map(data => {
-                 return { title: data.frontmatter.title, id: data.id, image: data.frontmatter.couverture?.childImageSharp?.gatsbyImageData }
+            const articles = articlesData.data.allStrapiArticle.nodes.map(data => {
+                return { title: data.titre, id: data.id, image: data.couverture[0].localFile.childImageSharp.gatsbyImageData}
             })
 
             createPage({
                 path: `/categorie/${domaine.tag}/${echelle.tag}`,
                 component: resolve(__dirname, 'src/templates/categorie.tsx'),
                 context: {domaine: domaine, echelle: echelle, articles: articles}
-              }); 
+              });
         }
     }
 }

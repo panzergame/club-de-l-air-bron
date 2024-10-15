@@ -1,4 +1,15 @@
 import type { GatsbyConfig } from "gatsby";
+import dotenv from 'dotenv'
+
+dotenv.config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+const strapiConfig = {
+  apiURL: process.env.STRAPI_API_URL,
+  accessToken: process.env.STRAPI_TOKEN,
+  collectionTypes: ["article"],
+};
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -42,6 +53,10 @@ const config: GatsbyConfig = {
           },
         ],
       },
+    },
+    {
+      resolve: `gatsby-source-strapi`,
+      options: strapiConfig,
     },
    ]
 };
