@@ -18,6 +18,7 @@ export const createPages = async ({ actions, graphql }) => {
                 titre
                 date(formatString: "DD MMMM, YYYY",  locale:"fr")
                 id
+                auteur
                 content {
                     data {
                         childMarkdownRemark {
@@ -48,7 +49,7 @@ export const createPages = async ({ actions, graphql }) => {
 
     const postTemplate = resolve(__dirname, 'src/templates/article.tsx');
 
-    allStrapiArticle.data?.allStrapiArticle.nodes.forEach(node => {
+    allStrapiArticle.data.allStrapiArticle.nodes.forEach(node => {
         createPage({
             path: '/article/' + node.id,
             component: postTemplate, //`${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,

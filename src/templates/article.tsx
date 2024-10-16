@@ -10,7 +10,7 @@ const Page: React.FC<PageProps> = ({ pageContext }) => {
   return (
     <Layout>
 	    <h2>{pageContext.titre}</h2>
-	    <p>Crée le {pageContext.date}</p>
+	    <p>Crée le {pageContext.date} par {pageContext.auteur}</p>
       <Markdown
           remarkPlugins={[remarkGfm]}
           components={{
