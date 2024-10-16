@@ -15,7 +15,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `Club de l'air Lyon-Bron`,
     description: `Club de maquettisme de la région lyonnaise`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://www.club-de-lair-lyon-bron.fr`
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
