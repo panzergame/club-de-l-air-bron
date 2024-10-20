@@ -25,13 +25,15 @@ const Layout: React.FC = (props: PropsWithChildren<LayoutProps>) => {
 		<Container fluid className="d-flex flex-column min-vh-100">
 			<Row className={`d-flex ${header}`}>
 				<Col xs={3} className="d-flex h-100 px-0 my-auto justify-content-center" md={{ span: 2, offset: 2}}>
-					<StaticImage src="../../resources/images/logo-club-clair.png" alt="Club logo" objectFit="contain" placeholder="none"/>
+					<Link to="/">
+						<StaticImage src="../../resources/images/logo-club-clair.png" alt="Club logo" objectFit="contain" placeholder="none"/>
+					</Link>
 				</Col>
 				<Col xs={7} className="d-flex flex-column my-auto" md={7}>
 					<h1>{data.site.siteMetadata.title}</h1>
 					<h6>{data.site.siteMetadata.description}</h6>
 				</Col>
-				<Col xs={2} md={12} className="d-flex flex-column my-auto">
+				<Col xs={2} md={12} className="d-flex flex-column px-0 my-auto">
 					<Navbar className="mx-auto"/>
 				</Col>
 			</Row>

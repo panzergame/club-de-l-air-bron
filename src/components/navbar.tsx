@@ -5,9 +5,9 @@ import { StaticImage } from "gatsby-plugin-image"
 
 const _Navbar: React.FC = () => {
   return (
-  <Navbar collapseOnSelect expand="lg" className="navbar-dark">
-    <Container fluid>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar collapseOnSelect expand="md" className="navbar-dark">
+    <Container fluid className="px-0">
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" className="border-0 w-100"/>
       <Navbar.Offcanvas
         id={`offcanvasNavbar-expand`}
         aria-labelledby={`offcanvasNavbarLabel-expand`}
