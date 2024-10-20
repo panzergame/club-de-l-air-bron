@@ -3,16 +3,16 @@ import type { HeadFC, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import Mardown from "../components/mardown"
 
-const Page: React.FC<PageProps> = ({ pageContext }) => {
+const Exposition: React.FC<PageProps> = ({ pageContext }) => {
   return (
     <Layout>
 	    <h2>{pageContext.titre}</h2>
-	    <p>Crée le {pageContext.date} par {pageContext.auteur}</p>
+	    <p>Oragnisé le {pageContext.date} à {pageContext.lieu} par {pageContext.organisateur}</p>
       <Mardown content={pageContext.content}/>
     </Layout>
   )
 }
 
-export default Page
+export default Exposition
 
-export const Head: HeadFC = () => <title>Article</title>
+export const Head: HeadFC = () => <title>Exposition</title>

@@ -27,13 +27,15 @@ const Layout: React.FC = (props: PropsWithChildren<LayoutProps>) => {
 				<Col xs={3} className="d-flex h-100 px-0 my-auto justify-content-center" md={{ span: 2, offset: 2}}>
 					<StaticImage src="../../resources/images/logo-club-clair.png" alt="Club logo" objectFit="contain" placeholder="none"/>
 				</Col>
-				<Col xs={9} className="d-flex flex-column my-auto" md={7}>
+				<Col xs={7} className="d-flex flex-column my-auto" md={7}>
 					<h1>{data.site.siteMetadata.title}</h1>
 					<h6>{data.site.siteMetadata.description}</h6>
 				</Col>
+				<Col xs={2} md={12} className="d-flex flex-column my-auto">
+					<Navbar className="mx-auto"/>
+				</Col>
 			</Row>
 			<Container className="flex-grow-1 bg-light">
-				<Navbar/>
 				<div className="my-3">{ props.children }</div>
 			</Container>
 			<Row className={`page-footer d-flex p-3 ${footer}`}>

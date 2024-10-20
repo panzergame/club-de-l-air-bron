@@ -1,27 +1,47 @@
 import * as React from 'react';
-import {Nav, NavDropdown} from "react-bootstrap"
+import {Nav, NavDropdown, Navbar, Container, Offcanvas} from "react-bootstrap"
 import { Link } from 'gatsby'
 import { StaticImage } from "gatsby-plugin-image"
 
-const Navbar: React.FC = () => {
+const _Navbar: React.FC = () => {
   return (
-	<Nav variant="underline" defaultActiveKey="/" as="ul" className="justify-content-center">
-      <Nav.Item as="li">
-        <Nav.Link as={Link} to="/">Accueil</Nav.Link>
-      </Nav.Item>
-      <Nav.Item as="li">
-        <Nav.Link as={Link} to="/le_club">Le club</Nav.Link>
-      </Nav.Item>
-      <Nav.Item as="li">
-        <Nav.Link as={Link} to="/galeries">Galeries</Nav.Link>
-      </Nav.Item>
-      <NavDropdown title="Categories">
-        <NavDropdown.Item as={Link} to="/expo_concours">Expo concours</NavDropdown.Item> 
-        <NavDropdown.Item as={Link} to="/reunions">Réunions</NavDropdown.Item> 
-        <NavDropdown.Item as={Link} to="/divers">Divers</NavDropdown.Item> 
-      </NavDropdown>
-    </Nav>
+  <Navbar collapseOnSelect expand="lg" className="navbar-dark">
+    <Container fluid>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Offcanvas
+        id={`offcanvasNavbar-expand`}
+        aria-labelledby={`offcanvasNavbarLabel-expand`}
+        placement="end"
+      >
+        <Offcanvas.Header closeButton/>
+        <Offcanvas.Body className="justify-content-center">
+          
+            <Nav variant="underline" defaultActiveKey="/" as="ul">
+              <Nav.Item as="li">
+                <Nav.Link as={Link} to="/">Accueil</Nav.Link>
+              </Nav.Item>
+              <Nav.Item as="li">
+                <Nav.Link as={Link} to="/le_club">Le club</Nav.Link>
+              </Nav.Item>
+              <Nav.Item as="li">
+                <Nav.Link as={Link} to="/galeries">Galeries</Nav.Link>
+              </Nav.Item>
+              <Nav.Item as="li">
+                <Nav.Link as={Link} to="/expositions">Expositions</Nav.Link>
+              </Nav.Item>
+              <Nav.Item as="li">
+                <Nav.Link as={Link} to="/reunions">Réunions</Nav.Link>
+              </Nav.Item>
+              <Nav.Item as="li">
+                <Nav.Link as={Link} to="/divers">Divers</Nav.Link>
+              </Nav.Item>
+            </Nav>
+
+        </Offcanvas.Body>
+      </Navbar.Offcanvas>
+    </Container>
+  </Navbar>
   )
 }
 
-export default Navbar
+export default _Navbar
