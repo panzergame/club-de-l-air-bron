@@ -11,7 +11,7 @@ const Page: React.FC<PageProps> = () => {
     <Carousel data-bs-theme="dark">
       <Carousel.Item>
         <Row className="justify-content-center" style={{height: "50vh"}}>
-          <StaticImage src="../../resources/images/expos_2024.jpg" objectFit="contain" className="h-100" placeholder="none"/>
+          <StaticImage src="../../resources/images/expo/expos_2025.jpg" objectFit="contain" className="h-100" placeholder="none"/>
         </Row>
       </Carousel.Item>
       <Carousel.Item>

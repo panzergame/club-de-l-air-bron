@@ -1,0 +1,17 @@
+
+.navbar-nav .dropdown-menu {
+	background: #4882ffda;
+}
+
+.dropdown-menu .dropdown-item {
+	color: white;
+}
+
+.nav-link {
+	color: white;
+}
+
+.nav-offcanvas {
+	background: #2a29ff;
+	color: white;
+}
