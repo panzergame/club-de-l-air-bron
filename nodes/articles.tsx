@@ -42,7 +42,7 @@ export const createArticles = async ({createPage, graphql}) => {
 
     const postTemplate = resolve(__dirname, '..', 'src/templates/article.tsx');
 
-    allStrapiArticle.data.allStrapiArticle.nodes.forEach(node => {
+    allStrapiArticle.data?.allStrapiArticle.nodes.forEach(node => {
         createPage({
             path: '/article/' + node.id,
             component: postTemplate, //`${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
@@ -81,7 +81,7 @@ export const createArticles = async ({createPage, graphql}) => {
                         distinct(field: { echelle: SELECT } )
                     }
               }`);
-            const echelles = echellesData.data.allStrapiArticle.distinct.map(data => ({ title: data, tag: data.replace('/', '_') })) 
+            const echelles = echellesData.data?.allStrapiArticle.distinct.map(data => ({ title: data, tag: data.replace('/', '_') })) 
             
             return { title: domaine.title, tag: domaine.tag, echelles: echelles, image: imageData.data.file}
         }

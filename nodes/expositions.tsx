@@ -55,7 +55,7 @@ export const createExpositions = async ({createPage, graphql}) => {
 
     const postTemplate = resolve(__dirname, '..', 'src/templates/exposition.tsx');
 
-    allStrapiExposition.data.allStrapiExposition.nodes.forEach(node => {
+    allStrapiExposition.data?.allStrapiExposition.nodes.forEach(node => {
         createPage({
             path: '/exposition/' + node.id,
             component: postTemplate, //`${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
@@ -63,7 +63,7 @@ export const createExpositions = async ({createPage, graphql}) => {
           });    
     });
 
-    const expositionSummary = allStrapiExposition.data.allStrapiExposition.nodes.map(node =>
+    const expositionSummary = allStrapiExposition.data?.allStrapiExposition.nodes.map(node =>
         {
             return {
                 id: node.id,
