@@ -9,7 +9,7 @@ const Page: React.FC<PageProps> = ({ pageContext }) => {
     <Layout>
       <Row xs={1} sm={2} lg={3} className="g-4">
         {
-          pageContext.expositions.map(exposition => (
+          pageContext.expositions?.map(exposition => (
             <Col>
               <ContentCard title={exposition.title} url={"/exposition/" + exposition.id} image={exposition.image}/>
             </Col>
