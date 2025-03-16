@@ -27,7 +27,7 @@ const Page: React.FC<PageProps> = () => {
             Exposition, commerçants, concours (inscription sur place), buvettes
 
             <h3>Horaire</h3>
-            Samedi 23 mars de 10h à 18h30 et dimanche 24 mars de 9h à 17h
+            Samedi 23 mars de 10h à 18h et dimanche 24 mars de 10h à 17h
             <h3>Lieu</h3>
             <a href="geo:50.371633,3.469681">Espace Albert Camus</a>
 
