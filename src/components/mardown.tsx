@@ -1,30 +1,74 @@
 import * as React from 'react';
-import { GatsbyImage } from "gatsby-plugin-image"
 import MarkdownReact from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import {Col} from "react-bootstrap"
+import {Container} from "react-bootstrap"
+import Gallery from '@browniebroke/gatsby-image-gallery'
+import {visit} from "unist-util-visit"
 
 type MardownProps = {
   content: any
 }
 
+function make_images_group(tree) {
+  function visitor(node) {
+    let new_children = []
+    
+    let images = []
+    
+    function create_gallery() {
+      if (images.length === 0) {
+        return
+      }
+      const gallery_node = {
+        type: 'element',
+        tagName: 'gallery',
+        properties: [],
+        children: [],
+        __images: images
+      }
+      new_children.push(gallery_node)
+      images = []
+    }
+    
+    for (const child of node.children) {
+      if (child.tagName == 'img') {
+        images.push(child)
+      }
+      else if (child.value != '\n') {
+        create_gallery()
+        new_children.push(child)
+      }
+    }
+    create_gallery()
+    node.children = new_children
+  }
+  
+  visit(tree, node => node.tagName === 'p', visitor)
+}
+
 const Mardown: React.FC = (props: MardownProps) => {
+  const medias = props.content.medias;
+
+  function find_image_by_src(src: String) {
+    const fileIndex = medias.findIndex(file => file.src === src);
+    if (fileIndex >= 0) {
+      return medias[fileIndex].localFile.childImageSharp
+    }
+    return null
+  }
+
   return (
     <MarkdownReact
-    remarkPlugins={[remarkGfm]}
-    components={{
-      img: ({node, ...imgProps}) => {
-        let medias = props.content.medias;
-        const fileIndex = medias.findIndex(file => file.src === imgProps.src);
-        if (fileIndex >= 0) {
-          const medium = medias[fileIndex];
+      remarkPlugins={[remarkGfm]}
+      rehypePlugins={[() => make_images_group]}
+      components={{
+        gallery: ({node, ...props}) => {
+          const images = node.__images.map(image => find_image_by_src(image.properties.src))
           return (
-              <Col className="mx-auto" md={8} as={GatsbyImage} image={medium.localFile.childImageSharp.gatsbyImageData} alt={medium.alternativeText} />
-          );
+              <Gallery images={images}/>
+          )
         }
-        return <img alt="this is a fallback text" {...imgProps} />;
-      }
-    }}
+      }}
     >
     {props.content.data.childMarkdownRemark.rawMarkdownBody}
     </MarkdownReact>
