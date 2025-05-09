@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MarkdownReact from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import {Container} from "react-bootstrap"
+import remarkBreaks from 'remark-breaks'
 import Gallery from '@browniebroke/gatsby-image-gallery'
 import {visit} from "unist-util-visit"
 
@@ -10,6 +10,7 @@ type MardownProps = {
 }
 
 function make_images_group(tree) {
+  console.log(tree)
   function visitor(node) {
     let new_children = []
     
@@ -34,8 +35,11 @@ function make_images_group(tree) {
       if (child.tagName == 'img') {
         images.push(child)
       }
-      else if (child.value != '\n') {
+      else if (child.value != '\n' && child.tagName != 'br') {
         create_gallery()
+        new_children.push(child)
+      }
+      else {
         new_children.push(child)
       }
     }
@@ -59,13 +63,13 @@ const Mardown: React.FC = (props: MardownProps) => {
 
   return (
     <MarkdownReact
-      remarkPlugins={[remarkGfm]}
+      remarkPlugins={[remarkBreaks, remarkGfm]}
       rehypePlugins={[() => make_images_group]}
       components={{
         gallery: ({node, ...props}) => {
           const images = node.__images.map(image => find_image_by_src(image.properties.src))
           return (
-              <Gallery images={images}/>
+              <Gallery images={images} gutter="0" mdColWidth="20"/>
           )
         }
       }}
