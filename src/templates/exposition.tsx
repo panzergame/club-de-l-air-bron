@@ -7,7 +7,7 @@ const Exposition: React.FC<PageProps> = ({ pageContext }) => {
   return (
     <Layout>
 	    <h2>{pageContext.titre}</h2>
-	    <p>Oragnisé le {pageContext.date} à {pageContext.lieu} par {pageContext.organisateur}</p>
+	    <p>Organisé le {pageContext.date} à {pageContext.lieu} par {pageContext.organisateur}</p>
       <Mardown content={pageContext.content}/>
     </Layout>
   )

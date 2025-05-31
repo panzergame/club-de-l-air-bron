@@ -120,6 +120,8 @@ export const createArticles = async ({createPage, graphql}) => {
                                 localFile {
                                     childImageSharp {
                                         gatsbyImageData(
+                                            width: 270
+                                            height: 270
                                             transformOptions: {
                                                 fit: INSIDE
                                             },

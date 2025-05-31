@@ -31,15 +31,18 @@ function make_images_group(tree) {
       images = []
     }
     
+    let last_node_is_image = false
     for (const child of node.children) {
       if (child.tagName == 'img') {
         images.push(child)
+        last_node_is_image = true
       }
       else if (child.value != '\n' && child.tagName != 'br') {
         create_gallery()
         new_children.push(child)
+        last_node_is_image = false
       }
-      else {
+      else if (!last_node_is_image) {
         new_children.push(child)
       }
     }
@@ -48,6 +51,8 @@ function make_images_group(tree) {
   }
   
   visit(tree, node => node.tagName === 'p', visitor)
+
+  console.log(tree)
 }
 
 const Mardown: React.FC = (props: MardownProps) => {
