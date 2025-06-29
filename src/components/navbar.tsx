@@ -34,6 +34,9 @@ const _Navbar: React.FC = () => {
                 <NavDropdown.Item as="li">
                   <Nav.Link as={Link} to="/notre_exposition">Notre exposition</Nav.Link>
                 </NavDropdown.Item>
+                <NavDropdown.Item as="li">
+                  <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+                </NavDropdown.Item>
               </NavDropdown>
               <Nav.Item as="li">
                 <Nav.Link as={Link} to="/galeries">Galeries</Nav.Link>
