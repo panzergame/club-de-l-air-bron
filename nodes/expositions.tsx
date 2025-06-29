@@ -26,17 +26,9 @@ export const createExpositions = async ({createPage, graphql}) => {
                                 thumb: gatsbyImageData(
                                     width: 270
                                     height: 270
-                                    transformOptions: {
-                                        fit: INSIDE
-                                    },
-                                    placeholder: BLURRED
                                 )
                                 full: gatsbyImageData(
-                                    layout: FULL_WIDTH,
-                                    transformOptions: {
-                                        fit: INSIDE
-                                    },
-                                    placeholder: NONE
+                                    layout: FULL_WIDTH
                                 )
                             }
                         }
@@ -48,9 +40,10 @@ export const createExpositions = async ({createPage, graphql}) => {
                     localFile {
                         childImageSharp {
                             gatsbyImageData(
+                                width: 270
                                 transformOptions: {
-                                    fit: INSIDE
-                                },
+                                    fit: OUTSIDE
+                                }
                                 placeholder: NONE
                             )
                         }

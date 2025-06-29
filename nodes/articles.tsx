@@ -25,17 +25,10 @@ export const createArticles = async ({createPage, graphql}) => {
                                 thumb: gatsbyImageData(
                                     width: 270
                                     height: 270
-                                    transformOptions: {
-                                        fit: INSIDE
-                                    },
                                     placeholder: BLURRED
                                 )
                                 full: gatsbyImageData(
-                                    layout: FULL_WIDTH,
-                                    transformOptions: {
-                                        fit: INSIDE
-                                    },
-                                    placeholder: NONE
+                                    layout: FULL_WIDTH
                                 )
                             }
                         }
@@ -122,9 +115,6 @@ export const createArticles = async ({createPage, graphql}) => {
                                         gatsbyImageData(
                                             width: 270
                                             height: 270
-                                            transformOptions: {
-                                                fit: INSIDE
-                                            },
                                             placeholder: NONE
                                         )
                                     }
