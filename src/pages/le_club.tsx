@@ -25,12 +25,12 @@ const Page: React.FC<PageProps> = () => {
         <Row class="mt-5">
           <Col>
             <h3>Activités du club</h3>
-            <p>Le club se réunis regulièrement dans ses locaux à Bron, voir <Link to="/reunions">nos réunions</Link>,
-            dans un atelier permanent avec aerographe et autre petit matériel.</p>
 
-            <p>Tout au long de long de l'année les membres du clubs participes à de nombreuses <Link to="/expositions">expositions</Link> en france et à l'international (angleterre, hongrie...).</p>
-
-            <p>Enfin, le club à pour objectif d'organiser une exposition à Bron, pour plus d'infos voir <Link to="/notre_exposition">notre exposition</Link>.</p>
+            <p>Le club se réunit régulièrement dans ses locaux à Bron, <Link to="/reunions">nos réunions</Link>,
+            dans un atelier permanent avec aérographe et autres petits matériels.</p>
+            
+            <p>Tout au long de l'année les membres du clubs participent à de nombreuses <Link to="/expositions">expositions</Link> en France et à l'international (Angleterre, Hongrie...).</p>
+            <p>Enfin, le club à pour objectif d'organiser annuellement une exposition à Bron, pour plus d'infos voir <Link to="/notre_exposition">notre exposition</Link>.</p>
           </Col>
         </Row>
         <Row>

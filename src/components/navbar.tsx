@@ -38,9 +38,9 @@ const _Navbar: React.FC = () => {
               <Nav.Item as="li">
                 <Nav.Link as={Link} to="/expositions">Expositions</Nav.Link>
               </Nav.Item>
-              <Nav.Item as="li">
+              {/* <Nav.Item as="li">
                 <Nav.Link as={Link} to="/divers">Divers</Nav.Link>
-              </Nav.Item>
+              </Nav.Item> */}
             </Nav>
 
         </Offcanvas.Body>
