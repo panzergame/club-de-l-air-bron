@@ -8,6 +8,8 @@ const Page: React.FC<PageProps> = () => {
     <Layout>
       <h2>Réunions</h2>
       <p>Le club se retrouve régulièrement un samedi sur deux au <a href="geo:45.7473954,4.9148733">18 rue de la pagère 69500 Bron</a></p>
+      <iframe className="w-100 mt-5" height="800" frameborder="0" scrolling="no"
+        src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FParis&showPrint=0&mode=WEEK&showTz=0&showTitle=0&src=MTM3OWE4YTYyMDQ0ZmM4MDRiMzM2YjEyYzlhN2ZiZDhhY2E5Y2Y3MWY4N2RjNjNlZGRhZTA2MDkyZGVhNzVlNEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZnIuZnJlbmNoI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23b39ddb&color=%23009688"></iframe>
       <MapContainer style={{ height: '400px' }} center={[45.7473954,4.9148733]} zoom={25} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -16,8 +18,6 @@ const Page: React.FC<PageProps> = () => {
         <Marker position={[45.7473954,4.9148733]}>
         </Marker>
       </MapContainer>
-      <iframe className="w-100 mt-5" height="800"
-        src="https://calendar.google.com/calendar/embed?src=1379a8a62044fc804b336b12c9a7fbd8aca9cf71f87dc63eddae06092dea75e4%40group.calendar.google.com&ctz=Europe%2FParis"></iframe>
     </Layout>
   )
 }
